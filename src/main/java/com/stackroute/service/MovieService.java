@@ -20,6 +20,7 @@ public interface MovieService {
     //to delete the movie with given movieId
     public Movie deleteMovie(Integer movieId);
 
+    //to search movie by movieTitle
     public List<Movie> getMovieByName(String movieTitle);
 
 }
