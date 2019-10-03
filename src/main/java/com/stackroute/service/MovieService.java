@@ -4,8 +4,7 @@ package com.stackroute.service;
 import com.stackroute.domain.Movie;
 import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
 
 import java.util.List;
 

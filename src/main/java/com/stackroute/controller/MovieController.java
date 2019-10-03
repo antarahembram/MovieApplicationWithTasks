@@ -5,6 +5,7 @@ import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
 import com.stackroute.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("v1/api/")
 public class MovieController {
-    MovieService movieService;
+
 
     @Autowired
+    @Qualifier("movieService")
+    MovieService movieService;
+
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }

@@ -15,8 +15,7 @@ import java.math.BigDecimal;
 public class Movie {
 
     @Id
-//    @Column(name = "moveId")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int movieId=0;
     private String genre;
     private String movieTitle;

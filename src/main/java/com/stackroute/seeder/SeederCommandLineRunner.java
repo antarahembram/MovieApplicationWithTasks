@@ -10,13 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-
 @Component
 @PropertySource("application.properties")
 public class SeederCommandLineRunner implements CommandLineRunner {
     @Autowired
     MovieRepository movieRepository;
-
 
     @Value("${genre}")
     private  String genre;
@@ -36,7 +34,6 @@ public class SeederCommandLineRunner implements CommandLineRunner {
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
-
 
     @Override
     public void run(String... args) throws Exception {
