@@ -76,4 +76,18 @@ public class MovieController {
     }
 
 
+    @GetMapping("movies/{movieTitle}")
+    public ResponseEntity<?> getMovieByName(@PathVariable("movieTitle") String movieTitle)
+    {
+        ResponseEntity responseEntity;
+        try{
+            responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieByName(movieTitle), HttpStatus.OK);
+        }
+        catch (Exception e){
+            responseEntity=new ResponseEntity<String>("Deletion is failed",HttpStatus.NO_CONTENT);
+        }
+        return responseEntity;
+    }
+
+
 }

@@ -2,6 +2,8 @@ package com.stackroute.service;
 
 
 import com.stackroute.domain.Movie;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,6 +19,8 @@ public interface MovieService {
 
     //to delete the movie with given movieId
     public Movie deleteMovie(Integer movieId);
+
+    public List<Movie> getMovieByName(String movieTitle);
 
 }
 

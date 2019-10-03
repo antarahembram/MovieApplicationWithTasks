@@ -3,6 +3,8 @@ package com.stackroute.service;
 import com.stackroute.domain.Movie;
 import com.stackroute.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,5 +56,12 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.deleteById(movieId);
     return movie;
     }
+
+    @Override
+    public List<Movie> getMovieByName(String movieTitle) {
+        List<Movie> movie=movieRepository.getMovieByName(movieTitle);
+        return movie;
+    }
+
 
 }
