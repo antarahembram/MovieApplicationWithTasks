@@ -14,7 +14,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> conflict(Exception e)
     {
-       ResponseEntity responseEntity=new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+       ResponseEntity responseEntity=new ResponseEntity<String>("Global exception: "+e.getMessage(), HttpStatus.CONFLICT);
         return  responseEntity;
     }
 }
