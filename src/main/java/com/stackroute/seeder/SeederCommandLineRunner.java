@@ -40,7 +40,7 @@ public class SeederCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Movie movie=new Movie(genre,movieTitle,language,status,voteCount,new BigDecimal(budget));
+        Movie movie=new Movie(2,genre,movieTitle,language,status,voteCount,new BigDecimal(budget));
 
         movieRepository.save(movie);
     }

@@ -48,7 +48,7 @@ public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
 
    @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
-       Movie movie=new Movie(environment.getProperty("genre"),environment.getProperty("movieTitle"),environment.getProperty("language1"),environment.getProperty("status"),75758,new BigDecimal(environment.getProperty("budget")));
+       Movie movie=new Movie(3,environment.getProperty("genre"),environment.getProperty("movieTitle"),environment.getProperty("language1"),environment.getProperty("status"),75758,new BigDecimal(environment.getProperty("budget")));
 
     movieRepository.save(movie);
     }
