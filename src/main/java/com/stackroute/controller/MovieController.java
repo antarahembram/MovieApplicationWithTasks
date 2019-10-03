@@ -57,8 +57,8 @@ public class MovieController {
 
             responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie), HttpStatus.OK);
         }
-        catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Update failed",HttpStatus.NO_CONTENT);
+        catch (MovieNotFoundException e){
+            responseEntity=new ResponseEntity<String>("Update failed:Movie is not found",HttpStatus.CONFLICT);
         }
         return responseEntity;
     }
@@ -72,7 +72,7 @@ public class MovieController {
             responseEntity=new ResponseEntity<Movie>(movieService.deleteMovie(movieId), HttpStatus.OK);
         }
         catch (MovieNotFoundException e){
-            responseEntity=new ResponseEntity<String>("Deletion is failed:Movie not found",HttpStatus.NO_CONTENT);
+            responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
         }
         return responseEntity;
     }

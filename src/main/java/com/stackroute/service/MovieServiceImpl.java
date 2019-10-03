@@ -65,7 +65,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie deleteMovie(Integer movieId) throws MovieNotFoundException {
+    public Movie deleteMovie(int movieId) throws MovieNotFoundException {
         if(!movieRepository.existsById(movieId))
         {
             throw new MovieNotFoundException("Movie is not found");
