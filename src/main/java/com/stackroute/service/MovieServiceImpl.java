@@ -24,13 +24,13 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> listMovie() {
+    public List<Movie> getMovieList() {
         return movieRepository.findAll();
     }
 
 
     @Override
-    public Movie update(Movie movie) {
+    public Movie updateMovie(Movie movie) {
         Movie updatedMovie=movieRepository.findById(movie.getMovieId()).get();
         if(movie.getMovieTitle()!=null)
             updatedMovie.setMovieTitle(movie.getMovieTitle());

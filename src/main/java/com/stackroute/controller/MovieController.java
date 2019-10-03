@@ -37,7 +37,7 @@ public class MovieController {
         ResponseEntity responseEntity;
         try{
 
-            responseEntity=new ResponseEntity<List<Movie>>(movieService.listMovie(), HttpStatus.OK);
+            responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieList(), HttpStatus.OK);
         }
         catch (Exception e){
             responseEntity=new ResponseEntity<String>("Failed in getting the list of Movies",HttpStatus.NO_CONTENT);
@@ -53,7 +53,7 @@ public class MovieController {
         ResponseEntity responseEntity;
         try{
 
-            responseEntity=new ResponseEntity<Movie>(movieService.update(movie), HttpStatus.OK);
+            responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie), HttpStatus.OK);
         }
         catch (Exception e){
             responseEntity=new ResponseEntity<String>("Update failed",HttpStatus.NO_CONTENT);

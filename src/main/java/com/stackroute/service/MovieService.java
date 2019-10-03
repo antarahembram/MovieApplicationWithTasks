@@ -6,12 +6,17 @@ import com.stackroute.domain.Movie;
 import java.util.List;
 
 public interface MovieService {
+    //To save the movie in repository
     public Movie saveMovie(Movie movie);
 
-    public List<Movie> listMovie();
+    //to get the list of stored movies
+    public List<Movie> getMovieList();
 
-    public Movie update(Movie movie);
+    //to update the movie
+    public Movie updateMovie(Movie movie);
 
+    //to delete the movie with given movieId
     public Movie deleteMovie(Integer movieId);
+
 }
 
