@@ -1,6 +1,8 @@
 package com.stackroute.controller;
 
 import com.stackroute.domain.Movie;
+import com.stackroute.exception.MovieAlreadyExistsException;
+import com.stackroute.exception.MovieNotFoundException;
 import com.stackroute.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +28,8 @@ public class MovieController {
         try{
             responseEntity=new ResponseEntity<Movie>(movieService.saveMovie(movie), HttpStatus.CREATED);
         }
-        catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Failed in creation",HttpStatus.CONFLICT);
+        catch (MovieAlreadyExistsException e){
+            responseEntity=new ResponseEntity<String>("Movie already exists",HttpStatus.CONFLICT);
         }
         return responseEntity;
     }
@@ -69,8 +71,8 @@ public class MovieController {
 
             responseEntity=new ResponseEntity<Movie>(movieService.deleteMovie(movieId), HttpStatus.OK);
         }
-        catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Deletion is failed",HttpStatus.NO_CONTENT);
+        catch (MovieNotFoundException e){
+            responseEntity=new ResponseEntity<String>("Deletion is failed:Movie not found",HttpStatus.NO_CONTENT);
         }
         return responseEntity;
     }

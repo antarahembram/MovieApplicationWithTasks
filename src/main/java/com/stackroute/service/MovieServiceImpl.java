@@ -1,6 +1,8 @@
 package com.stackroute.service;
 
 import com.stackroute.domain.Movie;
+import com.stackroute.exception.MovieAlreadyExistsException;
+import com.stackroute.exception.MovieNotFoundException;
 import com.stackroute.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -20,8 +22,16 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie saveMovie(Movie movie) {
+    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
+        if(movieRepository.existsById(movie.getMovieId()))
+        {
+            throw new MovieAlreadyExistsException("Movie already exists");
+        }
         Movie savedMovie= movieRepository.save(movie);
+        if(savedMovie==null)
+        {
+            throw new MovieAlreadyExistsException("Movie already exists");
+        }
         return savedMovie;
     }
 
@@ -32,7 +42,11 @@ public class MovieServiceImpl implements MovieService {
 
 
     @Override
-    public Movie updateMovie(Movie movie) {
+    public Movie updateMovie(Movie movie) throws  MovieNotFoundException{
+        if(!movieRepository.existsById(movie.getMovieId()))
+        {
+            throw new MovieNotFoundException("Movie is not found");
+        }
         Movie updatedMovie=movieRepository.findById(movie.getMovieId()).get();
         if(movie.getMovieTitle()!=null)
             updatedMovie.setMovieTitle(movie.getMovieTitle());
@@ -51,8 +65,16 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie deleteMovie(Integer movieId) {
+    public Movie deleteMovie(Integer movieId) throws MovieNotFoundException {
+        if(!movieRepository.existsById(movieId))
+        {
+            throw new MovieNotFoundException("Movie is not found");
+        }
         Movie movie=movieRepository.findById(movieId).get();
+        if(movie==null)
+        {
+            throw new MovieNotFoundException("Movie is not found");
+        }
         movieRepository.deleteById(movieId);
     return movie;
     }

@@ -30,7 +30,15 @@ public class Movie {
         this.voteCount = voteCount;
         this.budget = budget;
     }
-
+    public Movie( int movieId,String genere, String movieTitle, String language, String status, long voteCount, BigDecimal budget) {
+         this.movieId = movieId;
+        this.genre = genere;
+        this.movieTitle = movieTitle;
+        this.language = language;
+        this.status = status;
+        this.voteCount = voteCount;
+        this.budget = budget;
+    }
 
 
     public int getMovieId() {
