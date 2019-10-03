@@ -42,11 +42,8 @@ public class MovieServiceImpl implements MovieService {
 
 
     @Override
-    public Movie updateMovie(Movie movie) throws  MovieNotFoundException{
-        if(!movieRepository.existsById(movie.getMovieId()))
-        {
-            throw new MovieNotFoundException("Movie is not found");
-        }
+    public Movie updateMovie(Movie movie) {
+
         Movie updatedMovie=movieRepository.findById(movie.getMovieId()).get();
         if(movie.getMovieTitle()!=null)
             updatedMovie.setMovieTitle(movie.getMovieTitle());

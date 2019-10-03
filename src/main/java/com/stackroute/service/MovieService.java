@@ -17,7 +17,7 @@ public interface MovieService {
     public List<Movie> getMovieList();
 
     //to update the movie
-    public Movie updateMovie(Movie movie) throws  MovieNotFoundException;
+    public Movie updateMovie(Movie movie) ;
 
     //to delete the movie with given movieId
     public Movie deleteMovie(int movieId) throws MovieNotFoundException;

@@ -53,13 +53,9 @@ public class MovieController {
     public ResponseEntity<?> updateMovie(@RequestBody Movie movie)
     {
         ResponseEntity responseEntity;
-        try{
-
+        //Global Exception handling using @ControllerAdvice
             responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie), HttpStatus.OK);
-        }
-        catch (MovieNotFoundException e){
-            responseEntity=new ResponseEntity<String>("Update failed:Movie is not found",HttpStatus.CONFLICT);
-        }
+
         return responseEntity;
     }
 
