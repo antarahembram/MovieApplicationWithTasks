@@ -84,7 +84,7 @@ public class MovieController {
             responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieByName(movieTitle), HttpStatus.OK);
         }
         catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Deletion is failed",HttpStatus.NO_CONTENT);
+            responseEntity=new ResponseEntity<String>("Searching is failed",HttpStatus.NO_CONTENT);
         }
         return responseEntity;
     }
