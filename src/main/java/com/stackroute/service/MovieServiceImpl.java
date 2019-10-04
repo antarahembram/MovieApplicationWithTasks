@@ -5,8 +5,7 @@ import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
 import com.stackroute.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,9 @@ import java.util.List;
 
 @Service
 @Component
-@Qualifier("movieService")
-@Primary
+
+@Profile("dev")
+
 public class MovieServiceImpl implements MovieService {
 
     @Autowired

@@ -19,7 +19,6 @@ public class MovieController {
 
 
     @Autowired
-    @Qualifier("movieService")
     MovieService movieService;
 
     public MovieController(MovieService movieService) {

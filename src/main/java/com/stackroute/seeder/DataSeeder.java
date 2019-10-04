@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-//@Profile("dev")
 @PropertySource("application.properties")
 public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
 
