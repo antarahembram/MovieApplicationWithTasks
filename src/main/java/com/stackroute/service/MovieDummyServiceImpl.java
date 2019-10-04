@@ -3,16 +3,12 @@ package com.stackroute.service;
 import com.stackroute.domain.Movie;
 import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Component
 @Profile("dev")
 
 public class MovieDummyServiceImpl implements MovieService {
