@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Component
-
 @Profile("dev")
 
 public class MovieServiceImpl implements MovieService {
