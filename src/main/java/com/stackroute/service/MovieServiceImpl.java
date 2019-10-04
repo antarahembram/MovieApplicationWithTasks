@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 @Component
+
 @Profile("prod")
 public class MovieServiceImpl implements MovieService {
 
