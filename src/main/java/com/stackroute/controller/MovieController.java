@@ -16,8 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("v1/api/")
 public class MovieController {
-
-
     @Autowired
     MovieService movieService;
 
