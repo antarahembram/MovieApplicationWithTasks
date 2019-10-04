@@ -13,9 +13,7 @@ import java.util.List;
 
 @Service
 @Component
-
-@Profile("dev")
-
+@Profile("mysql")
 public class MovieServiceImpl implements MovieService {
 
     @Autowired

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Component
-@Profile("dev2")
+@Profile("dev")
 
 public class MovieDummyServiceImpl implements MovieService {
     @Override
