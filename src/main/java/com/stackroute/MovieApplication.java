@@ -6,10 +6,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class MovieapplicationApplication {
+public class MovieApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieapplicationApplication.class, args);
+		SpringApplication.run(MovieApplication.class, args);
 	}
 
 

@@ -3,7 +3,6 @@ package com.stackroute.seeder;
 import com.stackroute.domain.Movie;
 import com.stackroute.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.PropertySource;
@@ -16,26 +15,12 @@ import java.math.BigDecimal;
 @PropertySource("application.properties")
 public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
 
+    //using the environment calling the environment.getProperty
     @Autowired
     private Environment environment;
 
-   // private  String genre=environment.getProperty("genre");
-
-    @Value("${movieTitle}")
-    private  String movieTitle;
-
-    @Value("${language1}")
-    private  String language;
-
-    @Value("${status}")
-    private  String status;
-    @Value("${voteCount}")
-    private  long voteCount;
-    @Value("${budget}")
-    private  String budget;
-
-  @Autowired
-   MovieRepository movieRepository;
+    @Autowired
+    private MovieRepository movieRepository;
 
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
