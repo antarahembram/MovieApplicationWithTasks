@@ -1,9 +1,8 @@
 package com.stackroute;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import org.junit.Test;
+
 public class MovieControllerTest {
     @Test
     public void saveMovieTest()
