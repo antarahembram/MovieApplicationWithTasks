@@ -1,6 +1,6 @@
 package com.stackroute;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

@@ -2,8 +2,6 @@ package com.stackroute.service;
 
 
 import com.stackroute.domain.Movie;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
