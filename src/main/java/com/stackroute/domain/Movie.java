@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@SqlResultSetMapping(name = "Movie")
 public class Movie {
 
     @Id
@@ -22,7 +21,6 @@ public class Movie {
     }
 
     public Movie( String genere, String movieTitle, String language, String status, long voteCount, BigDecimal budget) {
-       // this.movieId = movieId;
         this.genre = genere;
         this.movieTitle = movieTitle;
         this.language = language;

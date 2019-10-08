@@ -4,8 +4,6 @@ package com.stackroute.service;
 import com.stackroute.domain.Movie;
 import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ public interface MovieService {
     public Movie deleteMovie(int movieId) throws MovieNotFoundException;
 
     //to search movie by movieTitle
-    public List<Movie> getMovieByName(String movieTitle);
+    public List<Movie> getMovieByName(String movieTitle) throws MovieNotFoundException;
 
 }
 

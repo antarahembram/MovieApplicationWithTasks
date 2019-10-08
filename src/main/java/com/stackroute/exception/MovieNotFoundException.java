@@ -1,5 +1,6 @@
 package com.stackroute.exception;
 
+//used in case of movie is not there
 public class MovieNotFoundException extends Exception{
     private String  message;
 
