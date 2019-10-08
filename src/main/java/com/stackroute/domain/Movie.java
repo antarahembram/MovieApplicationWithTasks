@@ -1,8 +1,6 @@
 package com.stackroute.domain;
 
-import jdk.jfr.DataAmount;
 import lombok.*;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

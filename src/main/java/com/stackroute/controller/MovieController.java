@@ -5,8 +5,6 @@ import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
 import com.stackroute.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,8 @@ import java.util.List;
 @RequestMapping("v1/api/")
 public class MovieController {
     @Autowired
-    MovieService movieService;
+    private MovieService movieService;
+    private ResponseEntity responseEntity;
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
@@ -26,7 +25,6 @@ public class MovieController {
     @PostMapping("movie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movie)
     {
-        ResponseEntity responseEntity;
         try{
             responseEntity=new ResponseEntity<Movie>(movieService.saveMovie(movie), HttpStatus.CREATED);
         }
@@ -38,7 +36,6 @@ public class MovieController {
     @GetMapping("movies")
     public ResponseEntity<?> getMovieList()
     {
-        ResponseEntity responseEntity;
         try{
 
             responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieList(), HttpStatus.OK);
@@ -54,7 +51,6 @@ public class MovieController {
     @PatchMapping("movies")
     public ResponseEntity<?> updateMovie(@RequestBody Movie movie)
     {
-        ResponseEntity responseEntity;
         //Global Exception handling using @ControllerAdvice
             responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie), HttpStatus.OK);
 
@@ -64,7 +60,6 @@ public class MovieController {
     @DeleteMapping("movies/{movieId}")
     public ResponseEntity<?> deleteMovie(@PathVariable("movieId") int movieId)
     {
-        ResponseEntity responseEntity;
         try{
 
             responseEntity=new ResponseEntity<Movie>(movieService.deleteMovie(movieId), HttpStatus.OK);
@@ -79,12 +74,11 @@ public class MovieController {
     @GetMapping("movies/{movieTitle}")
     public ResponseEntity<?> getMovieByName(@PathVariable("movieTitle") String movieTitle)
     {
-        ResponseEntity responseEntity;
         try{
             responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieByName(movieTitle), HttpStatus.OK);
         }
         catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Searching is failed",HttpStatus.NO_CONTENT);
+            responseEntity=new ResponseEntity<String>("Searching is failed",HttpStatus.CONFLICT);
         }
         return responseEntity;
     }

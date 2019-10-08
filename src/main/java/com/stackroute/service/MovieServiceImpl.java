@@ -5,17 +5,15 @@ import com.stackroute.exception.MovieAlreadyExistsException;
 import com.stackroute.exception.MovieNotFoundException;
 import com.stackroute.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Profile("prod")
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -23,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
-        if(movieRepository.existsById(movie.getMovieId()))
+        if(movieRepository.existsById(movie.getMovieId()))       //if movie exists with that movieId throw exception
         {
             throw new MovieAlreadyExistsException("Movie already exists");
         }
@@ -43,7 +41,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie updateMovie(Movie movie) {
-
         Movie updatedMovie=movieRepository.findById(movie.getMovieId()).get();
         if(movie.getMovieTitle()!=null)
             updatedMovie.setMovieTitle(movie.getMovieTitle());
@@ -63,7 +60,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie deleteMovie(int movieId) throws MovieNotFoundException {
-        if(!movieRepository.existsById(movieId))
+        if(!movieRepository.existsById(movieId))  // if no movie exists with that movieId throw exception
         {
             throw new MovieNotFoundException("Movie is not found");
         }
@@ -73,13 +70,17 @@ public class MovieServiceImpl implements MovieService {
             throw new MovieNotFoundException("Movie is not found");
         }
         movieRepository.deleteById(movieId);
-    return movie;
+        return movie;
     }
 
     @Override
-    public List<Movie> getMovieByName(String movieTitle) {
-        List<Movie> movie=movieRepository.getMovieByName(movieTitle);
-        return movie;
+    public List<Movie> getMovieByName(String movieTitle) throws MovieNotFoundException {
+        List<Movie> movies=movieRepository.getMovieByName(movieTitle);
+        if(movies.size()==0) //if movies contains no movie then throw exception
+        {
+            throw new MovieNotFoundException("Movie is not found");
+        }
+        return movies;
     }
 
 

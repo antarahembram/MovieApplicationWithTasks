@@ -21,7 +21,7 @@ public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
     private Environment environment;
 
   @Autowired
-   MovieRepository movieRepository;
+   private MovieRepository movieRepository;
 
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
