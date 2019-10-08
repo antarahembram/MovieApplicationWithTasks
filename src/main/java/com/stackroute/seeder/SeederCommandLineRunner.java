@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+
+//pre filling data using commandlineRunner
 @Component
 public class SeederCommandLineRunner implements CommandLineRunner {
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -21,7 +23,6 @@ public class SeederCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Movie movie=new Movie("Drama","Fight Club","en","Released",77890,new BigDecimal(5887889));
-
         movieRepository.save(movie);
     }
 }
