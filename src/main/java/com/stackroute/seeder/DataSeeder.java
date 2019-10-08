@@ -14,15 +14,14 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-//@Profile("dev")
 @PropertySource("application.properties")
 public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
 
     @Autowired
     private Environment environment;
 
-  @Autowired
-   MovieRepository movieRepository;
+      @Autowired
+       private MovieRepository movieRepository;
 
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;

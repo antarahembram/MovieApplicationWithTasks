@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @PropertySource("application.properties")
 public class SeederCommandLineRunner implements CommandLineRunner {
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     @Value("${genre}")
     private  String genre;
