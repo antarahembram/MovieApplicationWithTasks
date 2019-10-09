@@ -23,7 +23,6 @@ public interface MovieService {
     public Movie deleteMovie(int movieId) throws MovieNotFoundException;
 
     //to search movie by movieTitle
-    public List<Movie> getMovieByName(String movieTitle);
-
+    public List<Movie> getMovieByName(String movieTitle) throws  MovieNotFoundException;
 }
 
