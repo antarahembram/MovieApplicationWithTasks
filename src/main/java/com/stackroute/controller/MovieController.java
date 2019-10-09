@@ -67,7 +67,6 @@ public class MovieController {
     public ResponseEntity<?> deleteMovie(@PathVariable("movieId") int movieId)
     {
         try{
-
             responseEntity=new ResponseEntity<Movie>(movieService.deleteMovie(movieId), HttpStatus.OK);
         }
         catch (Exception e){
@@ -75,5 +74,4 @@ public class MovieController {
         }
         return responseEntity;
     }
-
 }
