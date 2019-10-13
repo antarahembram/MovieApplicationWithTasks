@@ -14,14 +14,16 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-@PropertySource("application.properties")
+@PropertySource("application.properties") //to access the properties of mention resources
+/*
+ApplicationListener is used to prefill the repository  */
 public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
 
     @Autowired
-    private Environment environment;
+    private Environment environment;  // setting the environment for the for property source
 
   @Autowired
-   private MovieRepository movieRepository;
+   private MovieRepository movieRepository;  // MovieRepository is needed to save the data
 
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -31,6 +33,6 @@ public class DataSeeder implements ApplicationListener <ApplicationReadyEvent>{
     public void onApplicationEvent(final ApplicationReadyEvent event) {
        Movie movie=new Movie(3,environment.getProperty("genre"),environment.getProperty("movieTitle"),environment.getProperty("language1"),environment.getProperty("status"),75758,new BigDecimal(environment.getProperty("budget")));
 
-    movieRepository.save(movie);
+    movieRepository.save(movie);  // save movie in teh repository
     }
 }

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@Profile("prod")
+@Service  // to write the logic to use Repository
+@Profile("prod")  /* Dummy MovieService will be used when application-prod.properties will be active*/
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    private MovieRepository movieRepository;
+    private MovieRepository movieRepository;   //  to use Repository properties and store data
 
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -42,19 +42,23 @@ public class MovieServiceImpl implements MovieService {
 
 
     @Override
-    public Movie updateMovie(Movie movie) {
-        Movie updatedMovie=movieRepository.findById(movie.getMovieId()).get();
-        if(movie.getMovieTitle()!=null)
+    public Movie updateMovie(Movie movie)  throws MovieNotFoundException{
+        if(!movieRepository.existsById(movie.getMovieId()))  // if no movie exists with that movieId throw exception
+        {
+            throw new MovieNotFoundException("Movie is not found");
+        }
+        Movie updatedMovie=movieRepository.findById(movie.getMovieId()).get();  //get movie by movieId
+        if(movie.getMovieTitle()!=null)     //if movieTitle is present then update it
             updatedMovie.setMovieTitle(movie.getMovieTitle());
-        if(movie.getGenre()!=null)
+        if(movie.getGenre()!=null)           //if genre is present then update it
             updatedMovie.setGenre(movie.getGenre());
-        if(movie.getLanguage()!=null)
+        if(movie.getLanguage()!=null)        //if language is present then update it
             updatedMovie.setLanguage(movie.getLanguage());
-        if(movie.getVoteCount()!=0)
+        if(movie.getVoteCount()!=0)          //if voteCount is present then update it
             updatedMovie.setVoteCount(movie.getVoteCount());
-        if(movie.getStatus()!=null)
+        if(movie.getStatus()!=null)          //if status is present then update it
             updatedMovie.setStatus(movie.getStatus());
-        if(movie.getBudget().intValue()!=0)
+        if(movie.getBudget().intValue()!=0)     //if budget is present then update it
             updatedMovie.setBudget(movie.getBudget());
 
         return movieRepository.save(updatedMovie);
@@ -66,18 +70,18 @@ public class MovieServiceImpl implements MovieService {
         {
             throw new MovieNotFoundException("Movie is not found");
         }
-        Movie movie=movieRepository.findById(movieId).get();
+        Movie movie=movieRepository.findById(movieId).get();   //get movie by movieId
         if(movie==null)
         {
             throw new MovieNotFoundException("Movie is not found");
         }
-        movieRepository.deleteById(movieId);
+        movieRepository.deleteById(movieId);     // delete movie by movieId
         return movie;
     }
 
     @Override
     public List<Movie> getMovieByName(String movieTitle) throws MovieNotFoundException {
-        List<Movie> movies=movieRepository.getMovieByName(movieTitle);
+        List<Movie> movies=movieRepository.getMovieByName(movieTitle); //get movie by movieTitle
         if(movies.size()==0) //if movies contains no movie then throw exception
         {
             throw new MovieNotFoundException("Movie is not found");

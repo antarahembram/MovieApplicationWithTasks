@@ -7,6 +7,7 @@ public class MovieNotFoundException extends Exception{
     }
 
     public MovieNotFoundException(String message) {
+        //message will be displayed when exception occurs
         super(message);
         this.message = message;
     }

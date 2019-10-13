@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Profile("dev")
-
+@Profile("dev") /* Dummy MovieService will be used when application-dev.properties will be active*/
 public class MovieDummyServiceImpl implements MovieService {
     @Override
     public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
@@ -23,7 +22,7 @@ public class MovieDummyServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie updateMovie(Movie movie) {
+    public Movie updateMovie(Movie movie) throws MovieNotFoundException{
         return null;
     }
 

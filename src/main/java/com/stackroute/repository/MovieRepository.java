@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
+    // hql query to return list of movies with matching movieTitle
     @Query("from Movie where movieTitle=?1 ")
     public List<Movie> getMovieByName(String movieTitle);
 }

@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("v1/api/")
+@RestController   // to use the class as RestController
+@RequestMapping("v1/api/")   // url starts with v1/api/
 public class MovieController {
     @Autowired
-    private MovieService movieService;
+    private MovieService movieService;   // to use methods of  MovieService
     private ResponseEntity responseEntity;
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
 
-    @PostMapping("movie")
-    public ResponseEntity<?> saveMovie(@RequestBody Movie movie)
+    @PostMapping("movie") // http method=post with url movie - store a movie in database
+    public ResponseEntity<?> saveMovie(@RequestBody Movie movie) throws MovieAlreadyExistsException,Exception
     {
         try{
             responseEntity=new ResponseEntity<Movie>(movieService.saveMovie(movie), HttpStatus.CREATED);
@@ -33,52 +33,44 @@ public class MovieController {
         }
         return responseEntity;
     }
-    @GetMapping("movies")
-    public ResponseEntity<?> getMovieList()
+    @GetMapping("movies") // http method=get with url movies - get list of movies
+    public ResponseEntity<?> getMovieList() throws Exception
     {
-        try{
-
-            responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieList(), HttpStatus.OK);
-        }
-        catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Failed in getting the list of Movies",HttpStatus.NO_CONTENT);
-        }
+        responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieList(), HttpStatus.OK);
         return responseEntity;
     }
 
 
 
-    @PatchMapping("movies")
-    public ResponseEntity<?> updateMovie(@RequestBody Movie movie)
+    @PatchMapping("movies")  // http method=patch with url movies - update a movie with matching movieId
+    public ResponseEntity<?> updateMovie(@RequestBody Movie movie) throws MovieNotFoundException,Exception
     {
-        //Global Exception handling using @ControllerAdvice
-            responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie), HttpStatus.OK);
-
+        //Global exception handling- one example
+        responseEntity=new ResponseEntity<Movie>(movieService.updateMovie(movie), HttpStatus.OK);
         return responseEntity;
     }
 
-    @DeleteMapping("movies/{movieId}")
+    @DeleteMapping("movie/{movieId}")   // http method=delete with url movie/movieId - delete movie  by movieId
     public ResponseEntity<?> deleteMovie(@PathVariable("movieId") int movieId)
     {
         try{
-
             responseEntity=new ResponseEntity<Movie>(movieService.deleteMovie(movieId), HttpStatus.OK);
         }
         catch (MovieNotFoundException e){
-            responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+            responseEntity=new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
         return responseEntity;
     }
 
 
-    @GetMapping("movies/{movieTitle}")
-    public ResponseEntity<?> getMovieByName(@PathVariable("movieTitle") String movieTitle)
+    @GetMapping("movies/{movieTitle}")   // http method=get with url movies/movieTitle - get movie or movies  by movieTitle
+    public ResponseEntity<?> getMovieByName(@PathVariable("movieTitle") String movieTitle) throws MovieNotFoundException,Exception
     {
         try{
             responseEntity=new ResponseEntity<List<Movie>>(movieService.getMovieByName(movieTitle), HttpStatus.OK);
         }
         catch (Exception e){
-            responseEntity=new ResponseEntity<String>("Searching is failed",HttpStatus.CONFLICT);
+            responseEntity=new ResponseEntity<String>("Searching is failed",HttpStatus.NOT_FOUND);
         }
         return responseEntity;
     }

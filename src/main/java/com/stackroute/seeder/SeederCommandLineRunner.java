@@ -12,24 +12,27 @@ import java.math.BigDecimal;
 
 @Component
 @PropertySource("application.properties")
+/*
+ CommandLineRunner is used to pre-fill data
+ */
 public class SeederCommandLineRunner implements CommandLineRunner {
     @Autowired
-    private MovieRepository movieRepository;
+    private MovieRepository movieRepository; // MovieRepository is needed to save the data
 
-    @Value("${genre}")
+    @Value("${genre}")    //setting the variable genre = the value of genre propertysource
     private  String genre;
 
-    @Value("${movieTitle}")
+    @Value("${movieTitle}")  //setting the variable movieTitle = the value of movieTitle propertysource
     private  String movieTitle;
 
-    @Value("${language}")
+    @Value("${language1}") //setting the variable language = the value of language1 propertysource
     private  String language;
 
-    @Value("${status}")
+    @Value("${status}")    //setting the variable status = the value of status propertysource
     private  String status;
-    @Value("${voteCount}")
+    @Value("${voteCount}") //setting the variable voteCount = the value of voteCount propertysource
     private  long voteCount;
-    @Value("${budget}")
+    @Value("${budget}")    //setting the variable budget = the value of budget propertysource
     private  String budget;
     public void setMovieRepository(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -39,6 +42,6 @@ public class SeederCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Movie movie=new Movie(2,genre,movieTitle,language,status,voteCount,new BigDecimal(budget));
 
-        movieRepository.save(movie);
+        movieRepository.save(movie); // saving movie in repository
     }
 }

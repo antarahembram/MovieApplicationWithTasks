@@ -5,14 +5,14 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity  // used for JPA repository
+@Data // to generate getter and setter of the Movie class
+@NoArgsConstructor  // to generate constructor with no arguments
+@AllArgsConstructor   //to generate constructor with all arguments
 @Builder
 public class Movie {
 
-    @Id
+    @Id //set movieId as primary key
     private int movieId=0;
     private String genre;
     private String movieTitle;
